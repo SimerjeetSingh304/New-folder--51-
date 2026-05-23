@@ -17,7 +17,7 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
@@ -29,6 +29,10 @@ app.use('/api/problems', problemRoutes);
 app.use('/api/stats', statsRoutes);
 
 // Health check
+app.get('/', (req, res) => {
+  res.json({ success: true, message: 'DevTracker API is running on Vercel 🚀' });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'DevTracker API is running 🚀' });
 });
