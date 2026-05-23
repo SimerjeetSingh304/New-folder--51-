@@ -22,11 +22,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-// Routes
+// Routes (with /api prefix)
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/problems', problemRoutes);
 app.use('/api/stats', statsRoutes);
+
+// Routes (without /api prefix - Fallback for Vercel if VITE_API_URL is missing /api)
+app.use('/auth', authRoutes);
+app.use('/jobs', jobRoutes);
+app.use('/problems', problemRoutes);
+app.use('/stats', statsRoutes);
 
 // Health check
 app.get('/', (req, res) => {
