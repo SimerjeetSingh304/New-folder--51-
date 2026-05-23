@@ -1,32 +1,48 @@
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FileQuestion } from 'lucide-react';
 import Button from '../components/ui/Button';
+import PageWrapper from '../components/layout/PageWrapper';
 
 const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexDirection: 'column',
-      textAlign: 'center',
-      padding: '24px',
-      background: 'radial-gradient(ellipse at top, #1a0a3b 0%, #0f172a 60%)',
-    }}>
-      <div className="animate-fadeIn">
-        <div style={{ fontSize: '80px', marginBottom: '16px' }}>🚫</div>
-        <h1 style={{ fontSize: '80px', fontWeight: '900', margin: '0 0 8px', background: 'linear-gradient(135deg,#7c3aed,#a78bfa)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+    <PageWrapper style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        style={{
+          textAlign: 'center',
+          background: 'var(--color-glass)',
+          border: '1px solid var(--color-glass-border)',
+          borderRadius: '24px',
+          padding: '64px 40px',
+          maxWidth: '500px',
+          width: '100%',
+          boxShadow: '0 8px 32px var(--color-shadow)',
+          backdropFilter: 'blur(24px)'
+        }}
+      >
+        <div style={{
+          width: '80px', height: '80px', borderRadius: '24px',
+          background: 'rgba(168,85,247,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: 'var(--color-brand-purple)', margin: '0 auto 24px', border: '1px solid rgba(168,85,247,0.2)'
+        }}>
+          <FileQuestion size={40} />
+        </div>
+        <h1 className="gradient-text" style={{ fontSize: '72px', fontWeight: '900', margin: '0 0 8px', lineHeight: 1 }}>
           404
         </h1>
-        <h2 style={{ margin: '0 0 12px', color: '#f1f5f9', fontSize: '22px' }}>Page Not Found</h2>
-        <p style={{ margin: '0 0 32px', color: '#64748b', maxWidth: '360px' }}>
-          The page you're looking for doesn't exist or was moved.
+        <h2 style={{ margin: '0 0 16px', color: 'var(--color-base-100)', fontSize: '24px', fontWeight: '700' }}>Lost in Space?</h2>
+        <p style={{ margin: '0 0 32px', color: 'var(--color-base-400)', fontSize: '15px', lineHeight: 1.6 }}>
+          The page you're looking for doesn't exist, was moved, or you just took a wrong turn at Albuquerque.
         </p>
-        <Button onClick={() => navigate('/')}>Go to Dashboard</Button>
-      </div>
-    </div>
+        <Button onClick={() => navigate('/')} style={{ padding: '14px 32px', fontSize: '15px' }}>
+          Back to Dashboard
+        </Button>
+      </motion.div>
+    </PageWrapper>
   );
 };
 

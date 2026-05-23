@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
 import Jobs from './pages/Jobs';
@@ -126,6 +127,7 @@ const AppRoutes = () => {
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 };
